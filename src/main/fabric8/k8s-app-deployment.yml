@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+       - name:  ${project.artifactId}
+         env:
+         - name: SPRING_PROFILES_ACTIVE
+           value: k8s
+         - name: USERNAME
+           valueFrom:
+             configMapKeyRef:
+                name: user-config
+                key: name
+                       
+ 
