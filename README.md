@@ -9,7 +9,7 @@ To set ``spring.profiles.active`` at runtime in kubernetes, you need to pass `SP
 
 ```
  env:
-         - name: SPRING_PROFILES_ACTIVE
-           value: k8s
+  - name: SPRING_PROFILES_ACTIVE
+    value: k8s
 
 ```
