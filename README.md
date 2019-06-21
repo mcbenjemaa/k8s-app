@@ -13,3 +13,13 @@ To set ``spring.profiles.active`` at runtime in kubernetes, you need to pass `SP
     value: k8s
 
 ```
+
+## building ##
+
+first build the project using Maven, this build will also create the resources yaml files  in `${basedir}/target/classes/METAINF/fabric8/kubernetes`. and will build the image.
+
+``` mvn clean install ```
+
+then you need a runing cluster on your machine, just run follwing command to deploy.
+
+``` mvn fabric8:apply ```
