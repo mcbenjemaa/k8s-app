@@ -10,7 +10,7 @@ spec:
        - name:  ${project.artifactId}
          env:
          - name: SPRING_PROFILES_ACTIVE
-           value: k8s
+           value: kubernetes
          - name: USERNAME
            valueFrom:
              configMapKeyRef:
