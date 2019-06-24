@@ -8,6 +8,12 @@ spec:
     spec:
       containers:
        - name:  ${project.artifactId}
+         livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30        
          env:
          - name: SPRING_PROFILES_ACTIVE
            value: kubernetes
@@ -16,5 +22,6 @@ spec:
              configMapKeyRef:
                 name: user-config
                 key: name
+
                        
  
