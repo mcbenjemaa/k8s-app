@@ -3,9 +3,27 @@ Simple app built with Spring Boot running in kubernetes.
 
 This app uses [spring-cloud-kubernetes](https://github.com/spring-cloud/spring-cloud-kubernetes) and ``fabric8-maven-plugin`` to automate build process 
 
-Our app had 2 profiles `dev` and `k8s`, meaning local develoment or runing in kubernetes.
+The app had 2 profiles `dev` and `kubernetes`, meaning local develoment or running in kubernetes.
 
-To set ``spring.profiles.active`` at runtime in kubernetes, you need to pass `SPRING_PROFILES_ACTIVE` Environment varible in the container.
+before we go we need to set required configMap, first the USERNAME:
+
+```
+kubectl create cm user-config --from-literal=name=Medchiheb
+```
+
+then the ``app-config``
+
+```
+kubectl create cm k8s-config --from-file=application.properties
+```
+
+By `spring-cloud-kubernetes-config` the config will loaded at bootstrap using our configMap created. to do so include configMap name in `bootstrap.properties` or `yml`
+
+```
+spring.cloud.kubernetes.config.name=k8s-config
+```
+
+To set ``spring.profiles.active`` at runtime in kubernetes, you need to pass `SPRING_PROFILES_ACTIVE` Environment variable in the container.
 
 ```
  env:
